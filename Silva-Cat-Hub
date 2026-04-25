@@ -1,22 +1,46 @@
--- SILVA CAT RUBI CONFIG
-local NomeHub = "Silva Cat Rubi"
-local FotoGTR = "rbxassetid://131113645367332" -- ID da imagem do GTR
+-- SILVA CAT RUBI (VERSÃO ORION FIX)
+local OrionLib = loadstring(game:HttpGet('https://raw.githubusercontent.com/shlexware/Orion/main/source'))()
 
--- Criando a Notificação de Carregamento Personalizada
-local StarterGui = game:GetService("StarterGui")
-StarterGui:SetCore("SendNotification", {
-    Title = NomeHub,
-    Text = "Carregando com sucesso...",
-    Icon = FotoGTR,
-    Duration = 5
+-- Janela Principal
+local Window = OrionLib:MakeWindow({
+    Name = "Silva Cat Rubi | @silvaxzn", 
+    HidePremium = false, 
+    SaveConfig = true, 
+    ConfigFolder = "SilvaCat",
+    IntroText = "Silva Cat Rubi" -- Texto que aparece ao abrir
 })
 
--- Alterando o nome na memória (Algumas versões do Redz aceitam)
-_G.HubName = NomeHub
-_G.LogoID = FotoGTR
+-- Aba Principal
+local Tab = Window:MakeTab({
+	Name = "Principal",
+	Icon = "rbxassetid://4483345998",
+	PremiumOnly = false
+})
 
--- Chama o script principal
-loadstring(game:HttpGet("https://rawscripts.net/raw/Universal-Script-New-redz-hub-138537"))()
+-- Botão para abrir o script que você gosta
+Tab:AddButton({
+	Name = "Ativar Silva Cat (Redz Base)",
+	Callback = function()
+        -- Notificação de Ativação
+        OrionLib:MakeNotification({
+            Name = "Silva Cat Rubi",
+            Content = "Iniciando funções do script...",
+            Image = "rbxassetid://4483345998",
+            Time = 5
+        })
+        -- Carrega o script base
+        loadstring(game:HttpGet("https://rawscripts.net/raw/Universal-Script-New-redz-hub-138537"))()
+  	end    
+})
 
--- Mensagem no Console para confirmar
-print("--- Silva Cat Rubi Ativado ---")
+-- Aba com Informações do Dono
+local InfoTab = Window:MakeTab({
+	Name = "Créditos",
+	Icon = "rbxassetid://4483362458",
+	PremiumOnly = false
+})
+
+InfoTab:AddLabel("Dono: silvaxzn")
+InfoTab:AddLabel("Tema: Nissan GTR White")
+
+OrionLib:Init()
