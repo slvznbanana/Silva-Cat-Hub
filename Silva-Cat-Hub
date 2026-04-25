@@ -1,46 +1,50 @@
--- SILVA CAT RUBI (VERSÃO ORION FIX)
-local OrionLib = loadstring(game:HttpGet('https://raw.githubusercontent.com/shlexware/Orion/main/source'))()
+-- =============================================
+-- Silva Ruby Cat Hub - Custom (Baseado no Redz)
+-- =============================================
 
--- Janela Principal
-local Window = OrionLib:MakeWindow({
-    Name = "Silva Cat Rubi | @silvaxzn", 
-    HidePremium = false, 
-    SaveConfig = true, 
-    ConfigFolder = "SilvaCat",
-    IntroText = "Silva Cat Rubi" -- Texto que aparece ao abrir
-})
+print("🔥 Iniciando Silva Ruby Cat...")
 
--- Aba Principal
-local Tab = Window:MakeTab({
-	Name = "Principal",
-	Icon = "rbxassetid://4483345998",
-	PremiumOnly = false
-})
+warn("✅ Sucesso! Silva ZN Banana, Ruby Cat executando")
+print("✅ Executado com sucesso.")
 
--- Botão para abrir o script que você gosta
-Tab:AddButton({
-	Name = "Ativar Silva Cat (Redz Base)",
-	Callback = function()
-        -- Notificação de Ativação
-        OrionLib:MakeNotification({
-            Name = "Silva Cat Rubi",
-            Content = "Iniciando funções do script...",
-            Image = "rbxassetid://4483345998",
-            Time = 5
-        })
-        -- Carrega o script base
-        loadstring(game:HttpGet("https://rawscripts.net/raw/Universal-Script-New-redz-hub-138537"))()
-  	end    
-})
+wait(1.5)
 
--- Aba com Informações do Dono
-local InfoTab = Window:MakeTab({
-	Name = "Créditos",
-	Icon = "rbxassetid://4483362458",
-	PremiumOnly = false
-})
+print("🚀 Carregando Silva Ruby Cat Hub...")
 
-InfoTab:AddLabel("Dono: silvaxzn")
-InfoTab:AddLabel("Tema: Nissan GTR White")
+-- Carrega o Redz Hub primeiro
+local success, lib = pcall(function()
+    return loadstring(game:HttpGet("https://raw.githubusercontent.com/tlredz/Scripts/refs/heads/main/main.luau"))()
+end)
 
-OrionLib:Init()
+if not success then
+    warn("❌ Erro ao carregar o hub base!")
+    return
+end
+
+wait(2)  -- espera o hub carregar a UI
+
+-- === TENTA MUDAR O NOME E A IMAGEM ===
+pcall(function()
+    -- Tenta mudar o título da janela principal
+    if getgenv().Window then
+        getgenv().Window.Title = "Silva Ruby Cat"
+        getgenv().Window.SubTitle = "by Silva ZN Banana"
+    end
+
+    -- Procura pela ImageLabel do logo (mais comum em hubs)
+    for _, v in pairs(game:GetService("CoreGui"):GetDescendants()) do
+        if v:IsA("ImageLabel") or v:IsA("ImageButton") then
+            if v.Image:find("redz") or v.Image:find("logo") or v.Name:lower():find("logo") then
+                -- Aqui vai a ImageId da sua foto do GTR
+                -- Você precisa subir a imagem para o Roblox primeiro e pegar o ID
+                v.Image = "rbxassetid://SEU_ID_AQUI"   -- <--- TROQUE AQUI
+                print("✅ Imagem do GTR aplicada!")
+                break
+            end
+        end
+    end
+
+    print("✅ Nome alterado para Silva Ruby Cat!")
+end)
+
+print("🚀 Silva Ruby Cat Hub carregado com sucesso!")
