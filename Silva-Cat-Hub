@@ -1,0 +1,22 @@
+-- SILVA CAT RUBI CONFIG
+local NomeHub = "Silva Cat Rubi"
+local FotoGTR = "rbxassetid://131113645367332" -- ID da imagem do GTR
+
+-- Criando a Notificação de Carregamento Personalizada
+local StarterGui = game:GetService("StarterGui")
+StarterGui:SetCore("SendNotification", {
+    Title = NomeHub,
+    Text = "Carregando com sucesso...",
+    Icon = FotoGTR,
+    Duration = 5
+})
+
+-- Alterando o nome na memória (Algumas versões do Redz aceitam)
+_G.HubName = NomeHub
+_G.LogoID = FotoGTR
+
+-- Chama o script principal
+loadstring(game:HttpGet("https://rawscripts.net/raw/Universal-Script-New-redz-hub-138537"))()
+
+-- Mensagem no Console para confirmar
+print("--- Silva Cat Rubi Ativado ---")
